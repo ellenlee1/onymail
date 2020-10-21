@@ -1,0 +1,18 @@
+{include file="head.html"}
+{include file="header.html"}
+
+<H2>Directory</H2>
+<em>Onymail is great for creating safe public addresses.  Email these great community projec$
+
+<div style='width: 500px; text-align: left;'>
+<ul>
+{foreach $leaderboard AS $k => $v}
+<li>
+<strong>({$v.email_count}) <a href='mailto:{$v.orig_addr}'>{$v.orig_addr}</a></strong>: <br/$
+</li>
+<br/>
+{/foreach}
+</ul>
+</div>
+
+{include file="footer.html"}
