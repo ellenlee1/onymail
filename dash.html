@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>ONYMAIL</title>
+</head>
+<body style='font-family: monospace;'>
+<h1>Your Dashboard</h1>
+Your page can only be accessed from this URL: <a href='{$url}'>{$url}</a>
+<form action='{$url}' method='post'>
+{if $status}<div style='border: 2px solid #333; margin: 10px; padding: 10px; background-colo$
+
+<h3>Overview</h3>
+<ul>
+<li>
+From Email: <a href='mailto:{$from_addr}@onymail.com'>{$from_addr}@onymail.com</a>
+<li>
+To Email: <input type='text' name='to_addr' value="{$to_addr}"> <input type='submit' value='$
+
+<li>
+Created: {$date_added}
+<li>
+Expiry: {$expiry_date}
+
+</ul>
+<blockquote>
+<a href="http://{$smarty.const.DOMAIN}/kill/{$hash}"   style="display: inline-block; backgro$
+
+{if $offer_extension}
+<a href="http://{$smarty.const.DOMAIN}/reup/{$hash}"   style="display: inline-block; backgro$
+{/if}
+</blockquote>
+<hr>
+<h3>Display Settings</h3>
+<strong>Privacy:</strong>
+<input type='radio' id='privatebutton' name='public' value='0' {if !$public}checked{/if}>
+<label for='privatebutton'>Private</label>
+
+<input type='radio' id='publicbutton' name='public' value='1' {if $public}checked{/if}>
+<label for='publicbutton'>Public</label>
+
+
+<br/>
+<strong>Profile:</strong> <textarea name='blurb' maxlength="80">{$profile}</textarea>
+<br/>
+<blockquote><input type='submit' value='Save Changes' style="display: inline-block; backgrou$
+</blockquote>
+
+</form>
+<hr>
+<br>
+<h3>Email Stats</h3>
+
+
+<a href='/send/{$hash}'>Send Email</a> (in &beta;)
+<ul>
+{if $log}
+{foreach $log AS $k => $v}
+<li>{if $v.status == '1'}
+<span style="display: inline-block; background-color: #cbea9d; border-color: #4312B2; color:$
+{else}
+<span style="display: inline-block; background-color: #ffbaba; border-color: #4312B2; color:$
+{/if}
+ {$v.receipt_time} {if $show_from}From: <em>{$v.from_addr}</em>{/if}
+{/foreach}
+{else}
+<li>No traffic to this address!  Try sending a test email to <a href='mailto:{$from_addr}@on$
+
+{/if}
+</ul>
+
+<br/><hr>
+Email <a href='mailto:hey@onymail.com'>hey@onymail.com</a> if you have any questions!
+
+
+</body>
+</html>
+
