@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Onymail</title>
+        <link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=b0535702$
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/$
+        <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1$
+        </script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net$
+        </script>
+        <script type="text/javascript" language="javascript" src="../resources/demo.js">
+        </script>
+        <script type="text/javascript" class="init">
+
+$(document).ready(function() {
+        $('#example').DataTable({
+                "order": [[ 1, "desc" ]]
+        });
+} );
+
+
+        </script>
+</head>
+
+<body class="wide comments example" style='font-family: monospace;'>
+
+<h1>Your Dashboard</h1>
+
+{if $status}<div style='border: 2px solid #333; margin: 10px; padding: 10px; background-colo$
+
+<ul>
+<li>Your page can only be accessed from this URL: <a href='{$url}'>{$url}</a>
+<li>
+To Email: <a href='mailto:{$to_addr}'>{$to_addr}</a>
+</ul>
+<hr>
+<br>
+<div style='width: 90%; margin-left: 5%; margin-right: 5%;'>
+<h3>Your Onymail Addresses</h3>
+{if $log}
+<table id="example" class="display" cellspacing="0" width="100%" style='text-align: center;'$
+                                        <thead>
+<tr>
+<th>Address</th>
+<th>Num Emails</th>
+<th>Public</th>
+<th>First Email</th>
+<th>Latest Email</th>
+<th>Expiry</th>
+</tr>
+                                        </thead>
+
+                                        <tbody>
+{foreach $log AS $k => $v}
+<tr>
+<td><a href='http://{$smarty.const.DOMAIN}/dash/{$v.hash}'>{$v.from_addr}</a></td><td>{$v.nu$
+<td>{$v.public}</td>
+<td data-order="{$v.first_sort}">{$v.first_email}</td>
+<td data-order="{$v.last_sort}">{$v.last_email}</td>
+<td data-order="{$v.expiry_sort}" style='background-color: {$v.expiry_status}'>{$v.expiry}</$
+{/foreach}
+
+                                        </tbody>
+                                </table>
+{else}
+<li>No traffic to this address!  Try sending a test email to <a href='mailto:{$from_addr}@on$
+
+{/if}
+</div>
+
+<br/><hr>
+Email <a href='mailto:hey@onymail.com'>hey@onymail.com</a> if you have any questions!
+
+
+
