@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>ONYMAIL</title>
+</head>
+<body style='font-family: monospace;'>
+<center>
+<h1>ONYMAIL</h1>
+<h2>Vanishing Email Addresses</h2>
+{if $status}<div style='border: 2px solid #333; margin: 10px; padding: 10px; background-color: {if $status_color == 'good'}#AFA{else}#FAA{/if};'>{$status}</div>{/if}
+
+------------------------------------------------------------------------
+<form action='/' method='post'>
+        <br/><br/>
+        <table><tr><td>
+        <label for='from_addr'>Emails Sent To</label>:
+        </td><td>
+        <input type='text' name='from_addr' id='from_addr'>@onymail.com
+        </td></tr>
+        <tr><td>
+        <label for='to_addr'>Redirect To</label>:
+        </td><td>
+        <input type='email' autocomplete="on" name='to_addr' id='to_addr'> &lt;-- Your Inbox
+        <input type='hidden' name='code' value='sesame'>
+        </td></tr>
+        <tr><td>
+        <label for='duration'>Expiration</label>:
+        </td><td>
+        <select name='expiry'>
+                <option value='a'>1 week</option>
+                <option value='b'>1 month</option>
+
+                <option value='c'>1 year</option>
+        {*      <option value='c'>&#x221e; (permament)</option>*}
+        </select>
+        </td></tr>
+        <tr><td>Privacy</td>
+        <td>Private</td>
+        </tr>
+        <tr><td>Solve:</td>
+        <td><img src='/captcha'>
+<input type='text' name='captcha'></td>
+        </tr>
+<!--    <tr><td>
+        <label for='password'>Code</label>:
+        </td><td>
+        <input type='text' name='code' id='code' value='sesame'>
+        </td></tr>-->
+        </table>
+
+        <br/>
+        <input type='submit' value="Go!" style="display: inline-block; background-color: #cbea9d; border-color: #4312B2; color: #000; text-decoration: none; padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: 400; line-height: 1.42857143; text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none; border: 1px solid transparent; border-radius: 4px; font-weight: bold;">
+        <br/>
+</form>
+<br/>
+
+------------------------------------------------------------------------
+<br/><br/>
+<a href='https://docs.google.com/forms/d/e/1FAIpQLSfO0Kkw9sK5RfTF2bQLwAOS6KWzOFU4TFrvaJd9BdozQVeEoA/viewform'>Subscribe to early stage startups and projects using your Onymail.com email alias.</a><br/>
+<br/>
+------------------------------------------------------------------------
+<br/>
+<div style='width: 400px; text-align: left;'>
+<br/>
+<strong>Top Public Addresses by Volume</strong>
+<em>Onymail is great for creating safe public addresses.  Check out these great community projects:</em>
+        <div>
+        <ul>
+        {foreach $leaderboard AS $k => $v}
+        <li>
+        <strong><a href='mailto:{$v.orig_addr}'>{$v.orig_addr}</a></strong>: ({$v.email_count}) <br/><em>{$v.profile}</em>
+        </li>
+        <br/>
+        {/foreach}
+        </ul>
+        </div>
+</div>
+<a href='/directory'>See {$public_count} More</a>
+<br/>
+<br/>
+{include file="footer.html"}                                
